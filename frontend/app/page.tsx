@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "./components/Navbar";
 import GridBackground from "./components/GridBackground";
 
@@ -29,34 +30,26 @@ export default function Home() {
         </h2>
         
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-7">
-          {/* Quantum state buttons */}
-          <button 
-            className="flex items-center justify-center px-6 py-5 rounded-xl bg-gradient-to-br from-black to-gray-900 border border-cyan-800/50 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] group relative overflow-hidden"
-          >
+          {/* Quantum state buttons as Links to the visualizer page */}
+          <Link href="/bloch-visualizer?state=0" className="flex items-center justify-center px-6 py-5 rounded-xl bg-gradient-to-br from-black to-gray-900 border border-cyan-800/50 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] group relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <span className="text-3xl font-mono bg-gradient-to-r from-cyan-400 to-white bg-clip-text text-transparent group-hover:from-white group-hover:to-cyan-400 relative z-10">|0⟩</span>
-          </button>
+          </Link>
           
-          <button 
-            className="flex items-center justify-center px-6 py-5 rounded-xl bg-gradient-to-br from-black to-gray-900 border border-cyan-800/50 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] group relative overflow-hidden"
-          >
+          <Link href="/bloch-visualizer?state=1" className="flex items-center justify-center px-6 py-5 rounded-xl bg-gradient-to-br from-black to-gray-900 border border-cyan-800/50 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] group relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <span className="text-3xl font-mono bg-gradient-to-r from-cyan-400 to-white bg-clip-text text-transparent group-hover:from-white group-hover:to-cyan-400 relative z-10">|1⟩</span>
-          </button>
+          </Link>
           
-          <button 
-            className="flex items-center justify-center px-6 py-5 rounded-xl bg-gradient-to-br from-black to-gray-900 border border-cyan-800/50 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] group relative overflow-hidden"
-          >
+          <Link href="/bloch-visualizer?state=plus" className="flex items-center justify-center px-6 py-5 rounded-xl bg-gradient-to-br from-black to-gray-900 border border-cyan-800/50 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] group relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <span className="text-3xl font-mono bg-gradient-to-r from-cyan-400 to-white bg-clip-text text-transparent group-hover:from-white group-hover:to-cyan-400 relative z-10">|+⟩</span>
-          </button>
+          </Link>
           
-          <button 
-            className="flex items-center justify-center px-6 py-5 rounded-xl bg-gradient-to-br from-black to-gray-900 border border-cyan-800/50 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] group relative overflow-hidden"
-          >
+          <Link href="/bloch-visualizer?state=minus" className="flex items-center justify-center px-6 py-5 rounded-xl bg-gradient-to-br from-black to-gray-900 border border-cyan-800/50 hover:border-cyan-400 transition-all duration-300 hover:shadow-[0_0_15px_rgba(0,255,255,0.3)] group relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <span className="text-3xl font-mono bg-gradient-to-r from-cyan-400 to-white bg-clip-text text-transparent group-hover:from-white group-hover:to-cyan-400 relative z-10">|-⟩</span>
-          </button>
+          </Link>
         </div>
       </main>
     </div>
