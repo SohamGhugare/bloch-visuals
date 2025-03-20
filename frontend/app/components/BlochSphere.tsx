@@ -16,6 +16,10 @@ const calculateBlochVector = (state: string) => {
       return [1, 0, 0]; // |+⟩ - X-axis positive
     case 'minus':
       return [-1, 0, 0]; // |-⟩ - X-axis negative
+    case 'i':
+      return [0, 1, 0]; // |i⟩ - Y-axis positive
+    case '-i':
+      return [0, -1, 0]; // |-i⟩ - Y-axis negative
     default:
       return [0, 0, 1];
   }
@@ -88,43 +92,7 @@ const Axes = () => {
       <StatePoint position={[0, 0, 1]} />
       <StatePoint position={[0, 0, -1]} />
       
-      {/* Circles along the axes with more subtle opacity
-      <Line
-        points={
-          Array.from({ length: 65 }).map((_, i) => {
-            const angle = (i / 64) * Math.PI * 2;
-            return new THREE.Vector3(Math.cos(angle), Math.sin(angle), 0);
-          })
-        }
-        color="#ffffff"
-        lineWidth={1.2}
-        opacity={0.35}
-        transparent
-      />
-      <Line
-        points={
-          Array.from({ length: 65 }).map((_, i) => {
-            const angle = (i / 64) * Math.PI * 2;
-            return new THREE.Vector3(Math.cos(angle), 0, Math.sin(angle));
-          })
-        }
-        color="#ffffff"
-        lineWidth={1.2}
-        opacity={0.35}
-        transparent
-      />
-      <Line
-        points={
-          Array.from({ length: 65 }).map((_, i) => {
-            const angle = (i / 64) * Math.PI * 2;
-            return new THREE.Vector3(0, Math.cos(angle), Math.sin(angle));
-          })
-        }
-        color="#ffffff"
-        lineWidth={1.2}
-        opacity={0.35}
-        transparent
-      /> */}
+      
     </>
   );
 };
@@ -135,8 +103,9 @@ const RotatingSphere = ({ children }: { children: React.ReactNode }) => {
   
   useFrame(({ clock }) => {
     if (groupRef.current) {
-      // Slow rotation around Y axis
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.1;
+      // Slow automatic rotation for better view of the sphere
+      groupRef.current.rotation.y = clock.getElapsedTime() * 0.15;
+      groupRef.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.1) * 0.2;
     }
   });
   
@@ -154,7 +123,7 @@ interface BlochSphereProps {
 export default function BlochSphere({ currentState }: BlochSphereProps) {
   return (
     <div className="w-full h-[400px] md:h-[500px]">
-      <Canvas camera={{ position: [3, 3, 3], fov: 45 }}>
+      <Canvas camera={{ position: [3, 3, 3], fov: 35 }}>
         <ambientLight intensity={0.5} />
         <pointLight position={[10, 10, 10]} intensity={1} />
         
@@ -164,7 +133,7 @@ export default function BlochSphere({ currentState }: BlochSphereProps) {
             <meshPhysicalMaterial 
               color="#b3c5d7"
               transparent
-              opacity={0.15}
+              opacity={0.12}
               roughness={0.2}
               metalness={0.1}
               clearcoat={0.5}
